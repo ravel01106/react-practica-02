@@ -1,10 +1,20 @@
 import { useState } from "react"
+import Login from "../Login/Login";
+import Logout from "../Logout/Logout";
+import PropTypes from 'prop-types';
 
-const Navbar = () => {
-    const [login, setlogin] = useState('button');
-    const isLogin = login === 'login';
+const Navbar = ({navbarLogin, setNavbarLogin}) => {
+    const [navbar, setNavbar] = useState("");
+    const [user, setUser] = useState({
+        nombre : '',
+        contrasenia: ''
+    });
+
+    const isLogin = navbar === 'login';
+    const isLogout = navbar === 'logout';
+
     const handleLogin = (e) => {
-        setlogin("login");
+        setNavbar("login");
     }
   return (
     <nav className="navbar navbar-expand-sm bg-body-tertiary bg-success">
@@ -22,21 +32,31 @@ const Navbar = () => {
                     <a className="nav-link text-white-50" href="#">Contacto</a>
                 </div>
             </div>
-            {!isLogin ? (            
-            <nav className="navbar bg-body-tertiary">
-                <form className="container-fluid justify-content-start">
-                    <button type="button" className="btn btn-warning mx-2">Crear cuenta</button>
-                    <button className="btn btn-outline-light" type="button" onClick={handleLogin}> Iniciar sesión</button>
-                </form>
-            </nav>
+            {isLogin ? (   
+                <Login navbar= {navbar} setNavbar={setNavbar} setUser={setUser} setNavbarLogin = {setNavbarLogin}/>         
+           
             ): (
-                <p>login</p>
+                <nav className="navbar bg-body-tertiary">
+                    {isLogout ? (
+                        <Logout user={user.nombre} setNavbar={setNavbar}  setNavbarLogin = {setNavbarLogin}/>
+                    ) : (
+                        <form className="container-fluid justify-content-start">
+                            <button type="button" className="btn btn-warning mx-2 text-success">Crear cuenta</button>
+                            <button className="btn btn-outline-light" type="button" onClick={handleLogin}> Iniciar sesión</button>
+                        </form>
+                    )}
+                </nav>
             )
+
             }
 
         </div>
     </nav>
   )
+}
+Navbar.propTypes = {
+    navbarLogin: PropTypes.bool.isRequired,
+    setNavbarLogin: PropTypes.func.isRequired
 }
 
 export default Navbar
