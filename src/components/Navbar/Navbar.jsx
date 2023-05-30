@@ -1,62 +1,61 @@
-import { useState } from "react"
-import Login from "../Login/Login";
-import Logout from "../Logout/Logout";
-import PropTypes from 'prop-types';
 
-const Navbar = ({navbarLogin, setNavbarLogin}) => {
-    const [navbar, setNavbar] = useState("");
+import PropTypes from 'prop-types';
+import Login from '../Login/Login';
+import Logout from '../Logout/Logout';
+import IniciarSesion from '../IniciarSesion/IniciarSesion';
+import { useState } from 'react';
+
+const Navbar = ({setEstaLogeado}) => {
+    const [isLogin, setIsLogin] = useState(false);
+    const [isLogout, setIsLogout] = useState(false);
     const [user, setUser] = useState({
-        nombre : '',
-        contrasenia: ''
+        nombre: '',
+        password: ''
     });
 
-    const isLogin = navbar === 'login';
-    const isLogout = navbar === 'logout';
-
-    const handleLogin = (e) => {
-        setNavbar("login");
+    const handleIniciando = () => {
+        setEstaLogeado('Iniciando');
+        setIsLogin(!isLogin)
+    }
+    const handleIniciada = () => {
+        setEstaLogeado('Iniciada');
+        setIsLogout(!isLogout);
+        setIsLogin(!isLogin);
+    }
+    const handleNoIniciado = () => {
+        setEstaLogeado('');
+        setIsLogout(!isLogout);
     }
   return (
-    <nav className="navbar navbar-expand-sm bg-body-tertiary bg-success">
-        <div className="container-fluid px-5">
-            <a className="navbar-brand" href="#">
-                <img src={`./logo.png`} alt="#" />
+    <nav className='navbar navbar-expand-sm bg-body-tertiary bg-success'>
+        <div className='container-fluid px-5'>
+            <a className='navbar-brand' href='#'>
+                <img src={`./logo.png`} alt='#' />
             </a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+            <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'>
+                <span className='navbar-toggler-icon'></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div className="navbar-nav text-white">
-                    <a className="nav-link text-white active" aria-current="page" href="#">Inicio</a>
-                    <a className="nav-link text-white-50" href="#">Acerca de</a>
-                    <a className="nav-link text-white-50" href="#">Contacto</a>
+            <div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
+                <div className='navbar-nav text-white'>
+                    <a className='nav-link text-white active' aria-current='page' href='#'>Inicio</a>
+                    <a className='nav-link text-white-50' href='#'>Acerca de</a>
+                    <a className='nav-link text-white-50' href='#'>Contacto</a>
                 </div>
             </div>
-            {isLogin ? (   
-                <Login navbar= {navbar} setNavbar={setNavbar} setUser={setUser} setNavbarLogin = {setNavbarLogin}/>         
-           
-            ): (
-                <nav className="navbar bg-body-tertiary">
-                    {isLogout ? (
-                        <Logout user={user.nombre} setNavbar={setNavbar}  setNavbarLogin = {setNavbarLogin}/>
-                    ) : (
-                        <form className="container-fluid justify-content-start">
-                            <button type="button" className="btn btn-warning mx-2 text-success">Crear cuenta</button>
-                            <button className="btn btn-outline-light" type="button" onClick={handleLogin}> Iniciar sesión</button>
-                        </form>
+            {isLogin ? (<Login handleIniciada={handleIniciada} user={user} setUser={setUser}/>):(
+                <nav className='navbar bg-body-tertiary'> 
+                    { isLogout ? (<Logout handleNoIniciado={handleNoIniciado} userName={user.nombre}/>):(
+                        <IniciarSesion handleIniciando={handleIniciando}/>
                     )}
                 </nav>
-            )
-
-            }
-
+            )}
         </div>
     </nav>
   )
 }
 Navbar.propTypes = {
-    navbarLogin: PropTypes.bool.isRequired,
-    setNavbarLogin: PropTypes.func.isRequired
+    setEstaLogeado: PropTypes.func.isRequired,
+    estaLogeado : PropTypes.string.isRequired
 }
 
 export default Navbar

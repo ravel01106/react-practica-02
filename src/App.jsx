@@ -3,13 +3,12 @@ import './App.css';
 import Header from './components/Header';
 import Navbar from './components/Navbar/Navbar';
 function App() {
-  const [estaLogeado, setEstaLogeado] = useState(false);
-  const poderMostrarCitas = estaLogeado === true;
+  const [estaLogeado, setEstaLogeado] = useState('');
   return (
     <div className="App">
       <Header/>
-      <Navbar setNavbarLogin={setEstaLogeado}/>
-      {poderMostrarCitas ? (<p>Hola</p>): (<p></p>)}
+      <Navbar setEstaLogeado={setEstaLogeado}/>
+      <p>{estaLogeado}</p>
     </div>
   );
 }

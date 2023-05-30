@@ -1,69 +1,74 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const Login = ({navbar, setNavbar, setUser, setNavbarLogin}) => {
-    const [login, setlogin] = useState(navbar);
-
+const Login = ({handleIniciada, user, setUser}) => {
     const initUser = {
         nombre: '',
-        contrasena: ''
+        password: ''
     }
 
-    const [form, setForm] = useState(initUser);
+    const [formState, setFormState] = useState(initUser);
 
-    const handleInputChange = (e) => {
-        setForm({...form, [e.target.name]: e.target.value})
+    const handleInputChange = (e) =>{
+        setFormState({...formState, [e.target.name]: e.target.value})
     }
 
-    const isContrasenaCorrecta = form.contrasena === '123';
-    const hayNombre = form.nombre.length !== 0;
-
-    const handleSubmit = (e) => {
+    const comprobarContrasenia = (e) => {
         e.preventDefault();
-
-        if(isContrasenaCorrecta && hayNombre){
-            setlogin('logout')
-            setNavbarLogin(true)
+        if(formState.nombre !== '' && formState.password === '123'){
+            setUser(formState);
+            handleIniciada();
         }else{
-            window.alert('nope')
-            setlogin('')
+            window.alert('nope');
         }
 
-        setNavbar(login)
-        setUser(form)
+        setFormState({
+            nombre: '',
+            password: ''
+        });
+
     }
+    
     return (
-    <div className="">
-        <form onSubmit={handleSubmit} className="d-flex">
-                <input className="form-control me-2" 
-                type="text"
-                placeholder="Name" 
-                id="nombre" 
-                name="nombre"
-                value={form.nombre} 
-                onChange={handleInputChange}
-                />
+        <div className='row'>
+            <div className='form-content'>
+                <form  className='row' onSubmit={comprobarContrasenia}>
+                    <div className='col'>
+                        <input  
+                        type='text' 
+                        className='form-control' 
+                        id='name'
+                        name='nombre'
+                        autoComplete='off'
+                        value={formState.nombre}
+                        placeholder='Introducir nombre'
+                        onChange={handleInputChange}/>
+                    </div>
 
-                <input className="form-control me-2" 
-                type="password" 
-                placeholder="Password" 
-                id="contrasena" 
-                name="contrasena"
-                value={form.contrasena} 
-                onChange={handleInputChange}/>
+                    <div className='col'>
+                        <input 
+                        type='password' 
+                        className='form-control' 
+                        id='surname'
+                        name='password'
+                        value={formState.password}
+                        placeholder='Introducir password'
+                        onChange={handleInputChange}/>
+                    </div>
 
-                <button className="btn btn-warning text-success" 
-                type="submit" id="button" >Aceptar</button>
-            </form>
-    </div>
+                    <div className='col'>
+                        <button className=' form-control btn btn-outline-light' type='submit'>Enviar datos</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     )
 }
 
 Login.propTypes = {
-    navbar: PropTypes.string.isRequired,
-    setNavbar: PropTypes.func.isRequired,
-    setUser : PropTypes.func.isRequired,
-    setNavbarLogin : PropTypes.func.isRequired
+    handleIniciada : PropTypes.func.isRequired,
+    user : PropTypes.object.isRequired,
+    setUser : PropTypes.func.isRequired
 }
 
 export default Login
