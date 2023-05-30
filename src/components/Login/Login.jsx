@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const Login = ({handleIniciada, user, setUser}) => {
+const Login = ({handleIniciada, setUser}) => {
     const initUser = {
         nombre: '',
         password: ''
@@ -67,7 +67,6 @@ const Login = ({handleIniciada, user, setUser}) => {
 
 Login.propTypes = {
     handleIniciada : PropTypes.func.isRequired,
-    user : PropTypes.object.isRequired,
     setUser : PropTypes.func.isRequired
 }
 

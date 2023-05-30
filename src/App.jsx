@@ -6,6 +6,7 @@ import CitaContainer from './components/CitaContainer';
 function App() {
   const [estaLogeado, setEstaLogeado] = useState('');
   const estaIniciada = estaLogeado === 'Iniciada';
+
   return (
     <div className="App">
       <Header/>

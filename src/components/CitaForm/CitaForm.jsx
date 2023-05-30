@@ -1,50 +1,108 @@
-const CitaForm = () => {
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+
+const CitaForm = ({setCita}) => {
+  const initCita = {
+    nombreMascota : '',
+    nombreDuenio : '',
+    fecha : '',
+    hora : '',
+    sintomas : ''
+  }
+  
+  const [formState, setFormState] = useState(initCita);
+
+  const handleInputChange = (e) =>{
+    setFormState({
+      ...formState, [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    setCita(formState);
+    setFormState({
+      nombreMascota : '',
+      nombreDuenio : '',
+      fecha : '',
+      hora : '',
+      sintomas : ''
+    });
+  }
+
   return (
-    <form className="row g-3">
-      <div className="col-md-6">
-        <label htmlFor="inputEmail4" className="form-label">Email</label>
-        <input type="email" className="form-control" id="inputEmail4" />
+    <div className='card m-5 text-bg-light bg-gradient border-light' >
+      <div className='card-body text-start'>
+        <h3 className='card-title text-success fw-medium mb-4'>Añadir cita</h3>
+        <form className='row g-3 border-top border-2' onSubmit={handleSubmit}>
+
+          <div className='col-12'>
+            <label htmlFor='nombreMascota' className='form-label'>Nombre mascota</label>
+            <input 
+            type='text' 
+            name = 'nombreMascota'
+            className='form-control' 
+            value={formState.nombreMascota}
+            onChange={handleInputChange}
+            id='nombreMascota' />
+          </div>
+
+          <div className='row-md-6'>
+            <label htmlFor='nombreDuenio' className='form-label'>Nombre dueño</label>
+            <input 
+            type='text' 
+            name = 'nombreDuenio'
+            className='form-control' 
+            value={formState.nombreDuenio}
+            onChange={handleInputChange}
+            id='nombreDuenio' />
+          </div>
+
+          <div className='col-md-6'>
+            <label htmlFor='fecha' className='form-label'>Fecha</label>
+            <input 
+            type='date' 
+            name = 'fecha'
+            className='form-control'
+            value={formState.fecha}
+            onChange={handleInputChange}
+            id='fecha' />
+          </div>
+
+          <div className='col-md-6'>
+            <label htmlFor='hora' className='form-label'>Hora</label>
+            <input 
+            type='time' 
+            className='form-control' 
+            value={formState.hora}
+            name = 'hora' 
+            id='hora' 
+            onChange={handleInputChange}/>
+            
+          </div>
+
+          <div className='row-md-6'>
+            <label htmlFor='sintomas' className='form-label'>Síntomas</label>
+            <textarea 
+            className='form-control' 
+            name='sintomas' 
+            value={formState.sintomas}
+            onChange={handleInputChange}
+            id='sintomas'
+            placeholder='Los síntomas...'/>
+          </div>
+          
+          <div className='row-md-6'>
+            <button type='submit' className='btn btn-warning '>Nueva cita</button>
+          </div>
+
+        </form>
       </div>
-      <div className="col-md-6">
-        <label htmlFor="inputPassword4" className="form-label">Password</label>
-        <input type="password" className="form-control" id="inputPassword4" />
-      </div>
-      <div className="col-12">
-        <label htmlFor="inputAddress" className="form-label">Address</label>
-        <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
-      </div>
-      <div className="col-12">
-        <label htmlFor="inputAddress2" className="form-label">Address 2</label>
-        <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
-      </div>
-      <div className="col-md-6">
-        <label htmlFor="inputCity" className="form-label">City</label>
-        <input type="text" className="form-control" id="inputCity" />
-      </div>
-      <div className="col-md-4">
-        <label htmlFor="inputState" className="form-label">State</label>
-        <select id="inputState" className="form-select">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div className="col-md-2">
-        <label htmlFor="inputZip" className="form-label">Zip</label>
-        <input type="text" className="form-control" id="inputZip" />
-      </div>
-      <div className="col-12">
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" id="gridCheck" />
-          <label className="form-check-label" htmlFor="gridCheck">
-            Check me out
-          </label>
-        </div>
-      </div>
-      <div className="col-12">
-        <button type="submit" className="btn btn-primary">Sign in</button>
-      </div>
-    </form>
+    </div>
   )
+}
+CitaForm.propTypes = {
+  setCita : PropTypes.func.isRequired
 }
 
 export default CitaForm

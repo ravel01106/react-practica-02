@@ -42,7 +42,7 @@ const Navbar = ({setEstaLogeado}) => {
                     <a className='nav-link text-white-50' href='#'>Contacto</a>
                 </div>
             </div>
-            {isLogin ? (<Login handleIniciada={handleIniciada} user={user} setUser={setUser}/>):(
+            {isLogin ? (<Login handleIniciada={handleIniciada} setUser={setUser}/>):(
                 <nav className='navbar bg-body-tertiary'> 
                     { isLogout ? (<Logout handleNoIniciado={handleNoIniciado} userName={user.nombre}/>):(
                         <IniciarSesion handleIniciando={handleIniciando}/>
