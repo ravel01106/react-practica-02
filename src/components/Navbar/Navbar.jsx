@@ -1,8 +1,8 @@
 
 import PropTypes from 'prop-types';
-import Login from '../Login/Login';
-import Logout from '../Logout/Logout';
-import IniciarSesion from '../IniciarSesion/IniciarSesion';
+import Login from '../Login';
+import Logout from '../Logout';
+import IniciarSesion from '../IniciarSesion';
 import { useState } from 'react';
 
 const Navbar = ({setEstaLogeado}) => {
