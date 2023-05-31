@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const CitaForm = ({setCita}) => {
+const CitaForm = ({setCita, handleAdd}) => {
   const initCita = {
     nombreMascota : '',
     nombreDuenio : '',
@@ -9,7 +9,7 @@ const CitaForm = ({setCita}) => {
     hora : '',
     sintomas : ''
   }
-  
+
   const [formState, setFormState] = useState(initCita);
 
   const handleInputChange = (e) =>{
@@ -93,7 +93,7 @@ const CitaForm = ({setCita}) => {
           </div>
           
           <div className='row-md-6'>
-            <button type='submit' className='btn btn-warning '>Nueva cita</button>
+            <button type='submit' className='btn btn-warning' onClick={handleAdd}>Nueva cita</button>
           </div>
 
         </form>
@@ -102,7 +102,8 @@ const CitaForm = ({setCita}) => {
   )
 }
 CitaForm.propTypes = {
-  setCita : PropTypes.func.isRequired
+  setCita : PropTypes.func.isRequired,
+  handleAdd : PropTypes.func.isRequired
 }
 
 export default CitaForm

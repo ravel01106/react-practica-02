@@ -1,18 +1,27 @@
 import PropTypes from 'prop-types';
-const CitaList = ({cita:{nombreMascota, nombreDuenio, fecha, hora, sintomas}}) => {
+import Cita from '../Cita';
+const CitaList = ({listaCita}) => {
+  const tieneCitas = listaCita.length > 0;
   return (
-    <div>
-      <h1>Cosas</h1>
-      <h5>{nombreMascota}</h5>
-      <p>{nombreDuenio}</p>
-      <p>{fecha}</p>
-      <p>{hora}</p>
-      <p>{sintomas}</p>
+    <div className='row'>
+      {
+        tieneCitas ? (        
+          listaCita && 
+          listaCita.map((cita, index) => {
+            return(
+              <Cita key={index} cita={cita}/>
+            );
+          })) : (
+            <h1>NO HAY CITAS</h1>
+          )
+
+      }
+      
     </div>
   )
 }
 CitaList.propTypes = {
-  cita : PropTypes.object.isRequired
+  listaCita : PropTypes.array.isRequired
 }
 
 export default CitaList
