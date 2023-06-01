@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const CitaForm = ({setCita, handleAdd}) => {
+const CitaForm = ({setListaCita, listaCita}) => {
   const initCita = {
     nombreMascota : '',
     nombreDuenio : '',
@@ -20,7 +20,16 @@ const CitaForm = ({setCita, handleAdd}) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    setCita(formState);
+    setListaCita([
+      ...listaCita,
+      {
+          nombreMascota : formState.nombreMascota,
+          nombreDuenio : formState.nombreDuenio,
+          fecha : formState.fecha,
+          hora : formState.hora,
+          sintomas : formState.sintomas
+      }
+    ])
     setFormState({
       nombreMascota : '',
       nombreDuenio : '',
@@ -44,7 +53,9 @@ const CitaForm = ({setCita, handleAdd}) => {
             className='form-control' 
             value={formState.nombreMascota}
             onChange={handleInputChange}
-            id='nombreMascota' />
+            id='nombreMascota' 
+            required
+            />
           </div>
 
           <div className='row-md-6'>
@@ -55,7 +66,8 @@ const CitaForm = ({setCita, handleAdd}) => {
             className='form-control' 
             value={formState.nombreDuenio}
             onChange={handleInputChange}
-            id='nombreDuenio' />
+            id='nombreDuenio' 
+            required/>
           </div>
 
           <div className='col-md-6'>
@@ -66,7 +78,8 @@ const CitaForm = ({setCita, handleAdd}) => {
             className='form-control'
             value={formState.fecha}
             onChange={handleInputChange}
-            id='fecha' />
+            id='fecha' 
+            required/>
           </div>
 
           <div className='col-md-6'>
@@ -77,7 +90,8 @@ const CitaForm = ({setCita, handleAdd}) => {
             value={formState.hora}
             name = 'hora' 
             id='hora' 
-            onChange={handleInputChange}/>
+            onChange={handleInputChange}
+            required/>
             
           </div>
 
@@ -89,11 +103,12 @@ const CitaForm = ({setCita, handleAdd}) => {
             value={formState.sintomas}
             onChange={handleInputChange}
             id='sintomas'
-            placeholder='Los síntomas...'/>
+            placeholder='Los síntomas...'
+            required/>
           </div>
           
           <div className='row-md-6'>
-            <button type='submit' className='btn btn-warning' onClick={handleAdd}>Nueva cita</button>
+            <button type='submit' className='btn btn-warning'>Nueva cita</button>
           </div>
 
         </form>
@@ -102,8 +117,8 @@ const CitaForm = ({setCita, handleAdd}) => {
   )
 }
 CitaForm.propTypes = {
-  setCita : PropTypes.func.isRequired,
-  handleAdd : PropTypes.func.isRequired
+  setListaCita : PropTypes.func.isRequired,
+  listaCita : PropTypes.array.isRequired
 }
 
 export default CitaForm

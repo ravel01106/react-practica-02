@@ -1,45 +1,23 @@
-import { useState } from 'react';
-import CitaForm from '../CitaForm/CitaForm';
-// import CitaList from '../CitaList/CitaList';
-// import PropTypes from 'prop-types';
-import CitaList from '../CitaList/CitaList';
+import CitaForm from '../CitaForm';
+import PropTypes from 'prop-types';
+import CitaList from '../CitaList';
 
 
-const CitaContainer = () => {
-    const [listaCita, setListaCita] = useState([]);
-    const [cita, setCita] = useState({
-        nombreMascota : '',
-        nombreDuenio : '',
-        fecha : '',
-        hora : '',
-        sintomas : ''
-    });
-    const handleAdd = () => {
-        setListaCita([
-            ...listaCita,
-            {
-                nombreMascota : cita.nombreMascota,
-                nombreDuenio : cita.nombreDuenio,
-                fecha : cita.fecha,
-                hora : cita.hora,
-                sintomas : cita.sintomas
-            }
-        ])
-    }
+const CitaContainer = ({listaCita, setListaCita}) => {
     return (
         <div className='container-fluid row' >
             <div className='col-md-6  d-flex'>
-                <CitaForm setCita={setCita} handleAdd={handleAdd}/>
+                <CitaForm setListaCita={setListaCita}  listaCita= {listaCita}/>
             </div>
             <div className='col-md-6'>
-                <CitaList listaCita={listaCita} cita={cita}/>
+                <CitaList listaCita={listaCita}/>
             </div>
         </div>
     )
 }
-// CitaContainer.propTypes = {
-//     listaCita : PropTypes.array.isRequired,
-//     setListaCita : PropTypes.func.isRequired
-//   }
+CitaContainer.propTypes = {
+    listaCita : PropTypes.array.isRequired,
+    setListaCita : PropTypes.func.isRequired
+  }
 
 export default CitaContainer

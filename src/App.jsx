@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import CitaContainer from './components/CitaContainer';
 function App() {
   const [estaLogeado, setEstaLogeado] = useState('');
+  const [listaCita, setListaCita] = useState([]);
   const estaIniciada = estaLogeado === 'Iniciada';
  
 
@@ -12,7 +13,7 @@ function App() {
     <div className="App">
       <Header/>
       <Navbar setEstaLogeado={setEstaLogeado}/>
-      {estaIniciada ? (<CitaContainer /> ):( <></> )}
+      {estaIniciada ? (<CitaContainer listaCita={listaCita} setListaCita={setListaCita}/> ):( <></> )}
     </div>
   );
 }

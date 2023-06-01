@@ -5,7 +5,7 @@ import Logout from '../Logout';
 import IniciarSesion from '../IniciarSesion';
 import { useState } from 'react';
 
-const Navbar = ({setEstaLogeado}) => {
+const Navbar = ({setEstaLogeado, setError}) => {
     const [isLogin, setIsLogin] = useState(false);
     const [isLogout, setIsLogout] = useState(false);
     const [user, setUser] = useState({
@@ -27,7 +27,7 @@ const Navbar = ({setEstaLogeado}) => {
         setIsLogout(!isLogout);
     }
   return (
-    <nav className='navbar navbar-expand-sm bg-body-tertiary bg-success'>
+    <nav className='navbar navbar-expand-sm bg-success '>
         <div className='container-fluid px-5'>
             <a className='navbar-brand' href='#'>
                 <img src={`./logo.png`} alt='#' />
@@ -43,7 +43,7 @@ const Navbar = ({setEstaLogeado}) => {
                 </div>
             </div>
             {isLogin ? (<Login handleIniciada={handleIniciada} setUser={setUser}/>):(
-                <nav className='navbar bg-body-tertiary'> 
+                <nav className='navbar'> 
                     { isLogout ? (<Logout handleNoIniciado={handleNoIniciado} userName={user.nombre}/>):(
                         <IniciarSesion handleIniciando={handleIniciando}/>
                     )}
@@ -55,7 +55,7 @@ const Navbar = ({setEstaLogeado}) => {
 }
 Navbar.propTypes = {
     setEstaLogeado: PropTypes.func.isRequired,
-    estaLogeado : PropTypes.string.isRequired
+    setError : PropTypes.func.isRequired
 }
 
 export default Navbar

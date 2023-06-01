@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+
 const Login = ({handleIniciada, setUser}) => {
     const initUser = {
         nombre: '',
         password: ''
     }
-
+    
     const [formState, setFormState] = useState(initUser);
-
     const handleInputChange = (e) =>{
         setFormState({...formState, [e.target.name]: e.target.value})
     }
@@ -19,7 +19,8 @@ const Login = ({handleIniciada, setUser}) => {
             setUser(formState);
             handleIniciada();
         }else{
-            window.alert('nope');
+            window.alert('noope')
+            
         }
 
         setFormState({
@@ -51,6 +52,7 @@ const Login = ({handleIniciada, setUser}) => {
                         className='form-control' 
                         id='surname'
                         name='password'
+                        autoComplete='off'
                         value={formState.password}
                         placeholder='Introducir password'
                         onChange={handleInputChange}/>
@@ -60,6 +62,7 @@ const Login = ({handleIniciada, setUser}) => {
                         <button className=' form-control btn btn-outline-light' type='submit'>Enviar datos</button>
                     </div>
                 </form>
+                
             </div>
         </div>
     )
@@ -67,7 +70,7 @@ const Login = ({handleIniciada, setUser}) => {
 
 Login.propTypes = {
     handleIniciada : PropTypes.func.isRequired,
-    setUser : PropTypes.func.isRequired
+    setUser : PropTypes.func.isRequired,
 }
 
 export default Login
