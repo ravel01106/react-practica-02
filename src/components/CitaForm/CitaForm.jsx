@@ -23,6 +23,7 @@ const CitaForm = ({setListaCita, listaCita}) => {
     setListaCita([
       ...listaCita,
       {
+          id: listaCita.length +1,
           nombreMascota : formState.nombreMascota,
           nombreDuenio : formState.nombreDuenio,
           fecha : formState.fecha,
@@ -40,7 +41,7 @@ const CitaForm = ({setListaCita, listaCita}) => {
   }
 
   return (
-    <div className='card m-5 text-bg-light bg-gradient border-light' >
+    <div className='card text-bg-light bg-gradient border-light' >
       <div className='card-body text-start'>
         <h3 className='card-title text-success fw-medium mb-4'>Añadir cita</h3>
         <form className='row g-3 border-top border-2' onSubmit={handleSubmit}>

@@ -5,7 +5,7 @@ import Logout from '../Logout';
 import IniciarSesion from '../IniciarSesion';
 import { useState } from 'react';
 
-const Navbar = ({setEstaLogeado, setError}) => {
+const Navbar = ({setEstaLogeado}) => {
     const [isLogin, setIsLogin] = useState(false);
     const [isLogout, setIsLogout] = useState(false);
     const [user, setUser] = useState({
@@ -54,8 +54,7 @@ const Navbar = ({setEstaLogeado, setError}) => {
   )
 }
 Navbar.propTypes = {
-    setEstaLogeado: PropTypes.func.isRequired,
-    setError : PropTypes.func.isRequired
+    setEstaLogeado: PropTypes.func.isRequired
 }
 
 export default Navbar

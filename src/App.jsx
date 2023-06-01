@@ -7,13 +7,15 @@ function App() {
   const [estaLogeado, setEstaLogeado] = useState('');
   const [listaCita, setListaCita] = useState([]);
   const estaIniciada = estaLogeado === 'Iniciada';
- 
+  const handleDelete = (id) => {
+    setListaCita(listaCita.filter((cita) => cita.id !== id));
+  }
 
   return (
     <div className="App">
       <Header/>
       <Navbar setEstaLogeado={setEstaLogeado}/>
-      {estaIniciada ? (<CitaContainer listaCita={listaCita} setListaCita={setListaCita}/> ):( <></> )}
+      {estaIniciada ? ( <CitaContainer listaCita={listaCita} setListaCita={setListaCita} handleDelete={handleDelete}/> ):( <></> )}
     </div>
   );
 }

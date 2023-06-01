@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 import Cita from '../Cita';
-const CitaList = ({listaCita}) => {
+const CitaList = ({listaCita, handleDelete}) => {
   const tieneCitas = listaCita.length > 0;
   return (
-    <div className='row'>
+    <div className='row mx-2'>
       {
         tieneCitas ? (        
           listaCita && 
           listaCita.map((cita, index) => {
             return(
-              <Cita key={index} cita={cita}/>
+              <Cita key={index} cita={cita} handleDelete={handleDelete}/>
             );
           })) : (
-            <h1>NO HAY CITAS</h1>
+            <h1 className='text-success fw-semibold text-start'>No hay citas previstas</h1>
           )
 
       }
@@ -21,7 +21,8 @@ const CitaList = ({listaCita}) => {
   )
 }
 CitaList.propTypes = {
-  listaCita : PropTypes.array.isRequired
+  listaCita : PropTypes.array.isRequired,
+  handleDelete : PropTypes.func.isRequired
 }
 
 export default CitaList
