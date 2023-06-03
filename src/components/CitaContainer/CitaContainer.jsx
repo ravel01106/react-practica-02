@@ -19,6 +19,6 @@ CitaContainer.propTypes = {
     listaCita : PropTypes.array.isRequired,
     setListaCita : PropTypes.func.isRequired,
     handleDelete : PropTypes.func.isRequired
-  }
+}
 
 export default CitaContainer
