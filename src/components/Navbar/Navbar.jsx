@@ -9,9 +9,10 @@ const Navbar = ({setEstaLogeado}) => {
     const [isLogin, setIsLogin] = useState(false);
     const [isLogout, setIsLogout] = useState(false);
     const [user, setUser] = useState({
-        nombre: '',
-        password: ''
+        userNombre: '',
+        userPassword: ''
     });
+
 
     const handleIniciando = () => {
         setEstaLogeado('Iniciando');

@@ -12,6 +12,7 @@ const CitaForm = ({setListaCita, listaCita}) => {
 
   const [formState, setFormState] = useState(initCita);
 
+
   const handleInputChange = (e) =>{
     setFormState({
       ...formState, [e.target.name]: e.target.value
@@ -39,7 +40,6 @@ const CitaForm = ({setListaCita, listaCita}) => {
       sintomas : ''
     });
   }
-
   return (
     <div className='card text-bg-light bg-gradient border-light' >
       <div className='card-body text-start'>
@@ -110,6 +110,7 @@ const CitaForm = ({setListaCita, listaCita}) => {
           
           <div className='row-md-6'>
             <button type='submit' className='btn btn-warning'>Nueva cita</button>
+
           </div>
 
         </form>
