@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
 
 
 const Login = ({handleIniciada, setUser}) => {
@@ -11,42 +10,26 @@ const Login = ({handleIniciada, setUser}) => {
     }
     
     const [formState, setFormState] = useState(initUser);
-
-    const [nombre, setNombre] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
 
     const handleInputChange = (e) =>{
-        setError(false);
         setFormState({...formState, [e.target.name]: e.target.value})
-        // if(e.target.name === "nombre"){
-        //     setNombre(e.target.value);
-        // }
-        // if(e.target.name === "password"){
-        //     setPassword(e.target.value);
-        // }
     }
 
     const comprobarContrasenia = (e) => {
         e.preventDefault();
-        if(nombre !== "" && password === '123'){
-            setUser({
-                userNombre: nombre,
-                userPassword: password
-                
-            });
+        if(formState.nombre !== "" && formState.password === '123'){
+            setUser(formState);
             handleIniciada();
         }else{
             setError(true);
             
         }
-        setNombre('');
-        setPassword('');
 
-        // setFormState({
-        //     nombre: '',
-        //     password: ''
-        // });
+        setFormState({
+            nombre: '',
+            password: ''
+        });
     }
 
     const mostrarError = () =>{
@@ -91,7 +74,8 @@ const Login = ({handleIniciada, setUser}) => {
 
             <div className='col'>
             <button className=' form-control btn btn-outline-light' type='submit' onClick={(error) ? mostrarError() : null}>Enviar datos</button>
-            <ToastContainer />
+            <ToastContainer/>
+            {error ? setError(false) : null}
             </div>
         </form>
     )
