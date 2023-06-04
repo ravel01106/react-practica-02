@@ -8,11 +8,11 @@ const Cita = ({ cita:{id, nombreMascota, nombreDuenio, fecha, hora, sintomas}, h
   return (
     <div className='card text-start mb-3'>
       <h5 className='card-header'>{nombreMascota}</h5>
-      <div className='card-body '>
+      <div className='card-body'>
         <p className='card-text d-inline'>Dueño: <p className='d-inline'>{nombreDuenio}</p></p>
         <div className='d-flex'>
-        <p className='card-text'>Fecha: <p className='d-inline'>{fechaParseada}</p></p>
-        <p className='card-text ms-auto'>Hora: <p className='d-inline'>{hora}</p></p>
+          <p className='card-text'>Fecha: <p className='d-inline'>{fechaParseada}</p></p>
+          <p className='card-text ms-auto'>Hora: <p className='d-inline'>{hora}</p></p>
         </div>
         <p className='card-text'>Sintomas: <p>{sintomas}</p></p>
         <button href='#' className='btn btn-danger' onClick={() => handleDelete(id)}> <AiTwotoneCompass/> Cita cerrada</button>

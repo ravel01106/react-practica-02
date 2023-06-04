@@ -3,7 +3,7 @@ import Cita from '../Cita';
 const CitaList = ({listaCita, handleDelete}) => {
   const tieneCitas = listaCita.length > 0;
   return (
-    <div className='row mx-2'>
+    <div className='mx-2'>
       {
         tieneCitas ? (        
           listaCita && 
