@@ -10,10 +10,10 @@ const Login = ({setEstaLogeado, setUser}) => {
     }
     
     const [formState, setFormState] = useState(initUser);
-    const [error, setError] = useState(false);
 
     const handleInputChange = (e) =>{
         setFormState({...formState, [e.target.name]: e.target.value})
+
     }
 
     const comprobarContrasenia = (e) => {
@@ -22,8 +22,7 @@ const Login = ({setEstaLogeado, setUser}) => {
             setUser(formState);
             setEstaLogeado('Iniciada');
         }else{
-            setError(true);
-            
+            mostrarError();
         }
 
         setFormState({
@@ -73,9 +72,8 @@ const Login = ({setEstaLogeado, setUser}) => {
             </div>
 
             <div className='col'>
-            <button className=' form-control btn btn-outline-light' type='submit' onClick={(error) ? mostrarError() : null}>Enviar datos</button>
+            <button className=' form-control btn btn-outline-light' onClick={comprobarContrasenia}>Enviar datos</button>
             <ToastContainer/>
-            {error ? setError(false) : null}
             </div>
         </form>
     )

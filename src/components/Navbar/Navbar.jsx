@@ -10,16 +10,6 @@ const Navbar = ({setEstaLogeado, estaLogeado}) => {
         userNombre: '',
         userPassword: ''
     });
-
-    // const handleIniciando = () => {
-    //     setEstaLogeado('Iniciando');
-    // }
-    // const handleIniciada = () => {
-    //     setEstaLogeado('Iniciada');
-    // }
-    // const handleNoIniciado = () => {
-    //     setEstaLogeado('');
-    // }
     const isLogin = estaLogeado === 'Iniciando';
     const isLogout = estaLogeado === 'Iniciada';
 
