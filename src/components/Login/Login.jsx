@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 
-const Login = ({handleIniciada, setUser}) => {
+const Login = ({setEstaLogeado, setUser}) => {
     const initUser = {
         nombre: '',
         password: ''
@@ -20,7 +20,7 @@ const Login = ({handleIniciada, setUser}) => {
         e.preventDefault();
         if(formState.nombre !== "" && formState.password === '123'){
             setUser(formState);
-            handleIniciada();
+            setEstaLogeado('Iniciada');
         }else{
             setError(true);
             
@@ -82,7 +82,7 @@ const Login = ({handleIniciada, setUser}) => {
 }
 
 Login.propTypes = {
-    handleIniciada : PropTypes.func.isRequired,
+    setEstaLogeado : PropTypes.func.isRequired,
     setUser : PropTypes.func.isRequired,
 }
 

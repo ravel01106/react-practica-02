@@ -14,8 +14,8 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <Navbar setEstaLogeado={setEstaLogeado}/>
-      {estaIniciada ? ( <CitaContainer listaCita={listaCita} setListaCita={setListaCita} handleDelete={handleDelete}/> ):( <></> )}
+      <Navbar setEstaLogeado={setEstaLogeado} estaLogeado={estaLogeado}/>
+      {estaIniciada ? ( <CitaContainer listaCita={listaCita} setListaCita={setListaCita} handleDelete={handleDelete}/> ):( null )}
     </div>
   );
 }

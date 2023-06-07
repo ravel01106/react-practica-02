@@ -2,31 +2,27 @@
 import PropTypes from 'prop-types';
 import Login from '../Login';
 import Logout from '../Logout';
-import IniciarSesion from '../IniciarSesion';
+import Account from '../account';
 import { useState } from 'react';
 
-const Navbar = ({setEstaLogeado}) => {
-    const [isLogin, setIsLogin] = useState(false);
-    const [isLogout, setIsLogout] = useState(false);
+const Navbar = ({setEstaLogeado, estaLogeado}) => {
     const [user, setUser] = useState({
         userNombre: '',
         userPassword: ''
     });
 
+    // const handleIniciando = () => {
+    //     setEstaLogeado('Iniciando');
+    // }
+    // const handleIniciada = () => {
+    //     setEstaLogeado('Iniciada');
+    // }
+    // const handleNoIniciado = () => {
+    //     setEstaLogeado('');
+    // }
+    const isLogin = estaLogeado === 'Iniciando';
+    const isLogout = estaLogeado === 'Iniciada';
 
-    const handleIniciando = () => {
-        setEstaLogeado('Iniciando');
-        setIsLogin(!isLogin)
-    }
-    const handleIniciada = () => {
-        setEstaLogeado('Iniciada');
-        setIsLogout(!isLogout);
-        setIsLogin(!isLogin);
-    }
-    const handleNoIniciado = () => {
-        setEstaLogeado('');
-        setIsLogout(!isLogout);
-    }
   return (
     <nav className='navbar navbar-expand-sm bg-success '>
         <div className='container-fluid px-5'>
@@ -43,10 +39,10 @@ const Navbar = ({setEstaLogeado}) => {
                     <a className='nav-link text-white-50' href='#'>Contacto</a>
                 </div>
             </div>
-            {isLogin ? (<Login handleIniciada={handleIniciada} setUser={setUser}/>):(
+            {isLogin ? (<Login setEstaLogeado={setEstaLogeado} setUser={setUser}/>):(
                 <nav className='navbar'> 
-                    { isLogout ? (<Logout handleNoIniciado={handleNoIniciado} userName={user.nombre}/>):(
-                        <IniciarSesion handleIniciando={handleIniciando}/>
+                    { isLogout ? (<Logout setEstaLogeado={setEstaLogeado} userName={user.nombre}/>):(
+                        <Account setEstaLogeado={setEstaLogeado}/>
                     )}
                 </nav>
             )}
@@ -55,7 +51,8 @@ const Navbar = ({setEstaLogeado}) => {
   )
 }
 Navbar.propTypes = {
-    setEstaLogeado: PropTypes.func.isRequired
+    setEstaLogeado: PropTypes.func.isRequired,
+    estaLogeado : PropTypes.string.isRequired
 }
 
 export default Navbar
