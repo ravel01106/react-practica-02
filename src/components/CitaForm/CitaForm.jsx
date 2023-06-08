@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 const CitaForm = ({setListaCita, listaCita}) => {
+  // const today = new Date();
   const initCita = {
     nombreMascota : '',
     nombreDuenio : '',
-    fecha : '',
+    fecha : new Date().toISOString().substring(0,10),
     hora : '',
     sintomas : ''
   }
@@ -35,7 +36,7 @@ const CitaForm = ({setListaCita, listaCita}) => {
     setFormState({
       nombreMascota : '',
       nombreDuenio : '',
-      fecha : '',
+      fecha : new Date().toISOString().substring(0,10),
       hora : '',
       sintomas : ''
     });
